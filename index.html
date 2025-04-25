@@ -1,185 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Farmácia de Plantão</title>
-  <style>
-      body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #fdfdfd;
-    display: flex;
-    min-height: 100vh;
-    /* Remova o justify-content se quiser que as colunas cresçam para o centro */
-  }
-
-  .ads-column {
-    width: 440px; /* aumente aqui, por exemplo */
-    background: #e0e0e0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 5px;
-    gap: 10px;
-  }
-  
-  .ad-slot {
-    width: 100%;
-    height: 150px; /* já aumentado */
-    background: #fff8dc;
-    border: 1px dashed #888;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8em;
-    text-align: center;
-    color: #444;
-  }
-
-    .main-content {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 500px;
-    }
-
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 0.5em;
-    }
-
-    .farmacia {
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #00796b;
-    }
-
-    .info {
-      margin-top: 1em;
-      font-size: 1em;
-      color: #444;
-    }
-
-     .footer {
-      width: 100%;
-      background: #00796b;
-      color: #fff;
-      padding: 16px 0;
-      text-align: center;
-      font-size: 1.1em;
-      font-weight: bold;
-      letter-spacing: 1px;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      z-index: 1000;
-    }
-
-    @media (max-width: 768px) {
-      .ads-column {
-        display: none;
-      }
-      .footer { position: static; }
-    }
-
-    .ad-slot:has(img) {
-  background: none;
-  border: none;
-  padding: 0;
-}
-  </style>
-</head>
-<body>
-  <!-- Coluna esquerda de anúncios -->
-  <div class="ads-column">
-    <div class="ad-slot"><img src="anuncios/ancora_prateada_anuncio.png" alt="Anúncio Âncora Prateada" style="width: 100%; height: 100%; object-fit: contain;"></div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-  </div>
-
-  <!-- Conteúdo principal -->
-  <div class="main-content">
-    <div class="container">
-      <h1 id="titulo-plantao"></h1>
-      <div class="farmacia" id="farmacia-nome">Carregando...</div>
-      <div class="info" id="farmacia-info"></div>
-    </div>
-  </div>
-
-  <!-- Coluna direita de anúncios -->
-  <div class="ads-column">
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-    <div class="ad-slot">Anuncie aqui</div>
-  </div>
-
-   <div class="footer">
-   feito por Bárbara Rocha &nbsp;|&nbsp; Contato: (17) 99735-3415
-  </div>
-
-  <script>
-    const farmacias = [
-      {
-        nome: "Drogaria Santo Antonio (Farmácia do João)",
-        telefone: "(17) 98163-1154"
-      },
-      {
-        nome: "Drogaria São Pedro (Farmácia do Flávio)",
-        telefone: "(17) 98108-3876"
-      },
-      {
-        nome: "Farma Nova (Farmácia do Zé)",
-        telefone: "(17) 98133-2376"
-      },
-      {
-        nome: "Multidrogas (Farmácia do Tauan)",
-        telefone: "(17) 98187-3139"
-      }
-    ];
-
-    // Função: retorna o sábado mais recente (ou hoje, se for sábado)
-    function ultimoSabadoAntes(hoje) {
-      const dia = hoje.getDay(); // 0 = domingo, 6 = sábado
-      const diasParaTirar = dia === 6 ? 0 : dia + 1; // se sábado, tira 0 dias; se domingo, tira 1, etc.
-      const sabado = new Date(hoje);
-      sabado.setDate(hoje.getDate() - diasParaTirar);
-      return sabado;
-    }
-
-
-
-    const hoje = new Date();
-    const sabadoReferencia = ultimoSabadoAntes(hoje);
-    const primeiraData = new Date("2024-04-20"); // Sábado de referência com João
-
-    const semanasPassadas = Math.floor((sabadoReferencia - primeiraData) / (7 * 24 * 60 * 60 * 1000));
-    const indexFarmacia = semanasPassadas % farmacias.length;
-    const farmacia = farmacias[indexFarmacia];
-
-       
-    const dia = String(hoje.getDate()).padStart(2, '0');
-    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-    const titulo = `Farmácia de Plantão hoje (${dia}/${mes}) em Neves Paulista 🚨`;
-    document.getElementById('titulo-plantao').textContent = titulo;
-
-    document.getElementById("farmacia-nome").textContent = farmacia.nome;
-    document.getElementById("farmacia-info").innerHTML = `
-      🕘 Plantão das 9h às 22h<br>
-      📞 ${farmacia.telefone}
-    `;
-  </script>
-</body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Farmácia de Plantão</title>
+      <style>
+         body {
+         margin: 0;
+         font-family: sans-serif;
+         background: #fdfdfd;
+         display: flex;
+         min-height: 100vh;
+         /* Remova o justify-content se quiser que as colunas cresçam para o centro */
+         }
+         .ads-column {
+         width: 440px; /* aumente aqui, por exemplo */
+         background: #e0e0e0;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding: 10px 5px;
+         gap: 10px;
+         }
+         .ad-slot {
+         width: 100%;
+         height: 150px; /* já aumentado */
+         background: #fff8dc;
+         border: 1px dashed #888;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 0.8em;
+         text-align: center;
+         color: #444;
+         }
+         .main-content {
+         flex: 1;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         padding: 20px;
+         }
+         .container {
+         max-width: 500px;
+         }
+         h1 {
+         font-size: 1.8em;
+         margin-bottom: 0.5em;
+         }
+         .farmacia {
+         font-size: 1.4em;
+         font-weight: bold;
+         color: #00796b;
+         }
+         .info {
+         margin-top: 1em;
+         font-size: 1em;
+         color: #444;
+         }
+         .footer {
+         width: 100%;
+         background: #00796b;
+         color: #fff;
+         padding: 16px 0;
+         text-align: center;
+         font-size: 1.1em;
+         font-weight: bold;
+         letter-spacing: 1px;
+         position: fixed;
+         left: 0;
+         bottom: 0;
+         z-index: 1000;
+         }
+         @media (max-width: 768px) {
+         .ads-column {
+         display: none;
+         }
+         .footer { position: static; }
+         }
+         .ad-slot:has(img) {
+         background: none;
+         border: none;
+         padding: 0;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Coluna esquerda de anúncios -->
+      <div class="ads-column">
+         <div class="ad-slot"><img src="anuncios/ancora_prateada_anuncio.png" alt="Anúncio Âncora Prateada" style="width: 100%; height: 100%; object-fit: contain;"></div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+      </div>
+      <!-- Conteúdo principal -->
+      <div class="main-content">
+         <div class="container">
+            <h1 id="titulo-plantao"></h1>
+            <div class="farmacia" id="farmacia-nome">Carregando...</div>
+            <div class="info" id="farmacia-info"></div>
+         </div>
+      </div>
+      <!-- Coluna direita de anúncios -->
+      <div class="ads-column">
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+         <div class="ad-slot">Anuncie aqui</div>
+      </div>
+      <div class="footer">
+         feito por Bárbara Rocha &nbsp;|&nbsp; Contato: (17) 99735-3415
+      </div>
+      <script>
+         const farmacias = [
+           {
+             nome: "Drogaria Santo Antonio (Farmácia do João)",
+             telefone: "(17) 98163-1154"
+           },
+           {
+             nome: "Drogaria São Pedro (Farmácia do Flávio)",
+             telefone: "(17) 98108-3876"
+           },
+           {
+             nome: "Farma Nova (Farmácia do Zé)",
+             telefone: "(17) 98133-2376"
+           },
+           {
+             nome: "Multidrogas (Farmácia do Tauan)",
+             telefone: "(17) 98187-3139"
+           }
+         ];
+         
+         // Função: retorna o sábado mais recente (ou hoje, se for sábado)
+         function ultimoSabadoAntes(hoje) {
+           const dia = hoje.getDay(); // 0 = domingo, 6 = sábado
+           const diasParaTirar = dia === 6 ? 0 : dia + 1; // se sábado, tira 0 dias; se domingo, tira 1, etc.
+           const sabado = new Date(hoje);
+           sabado.setDate(hoje.getDate() - diasParaTirar);
+           return sabado;
+         }
+         
+         
+         
+         const hoje = new Date();
+         const sabadoReferencia = ultimoSabadoAntes(hoje);
+         const primeiraData = new Date("2024-04-20"); // Sábado de referência com João
+         
+         const semanasPassadas = Math.floor((sabadoReferencia - primeiraData) / (7 * 24 * 60 * 60 * 1000));
+         const indexFarmacia = semanasPassadas % farmacias.length;
+         const farmacia = farmacias[indexFarmacia];
+         
+            
+         const dia = String(hoje.getDate()).padStart(2, '0');
+         const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+         const titulo = `Farmácia de Plantão hoje (${dia}/${mes}) em Neves Paulista 🚨`;
+         document.getElementById('titulo-plantao').textContent = titulo;
+         
+         document.getElementById("farmacia-nome").textContent = farmacia.nome;
+         document.getElementById("farmacia-info").innerHTML = `
+           🕘 Plantão das 9h às 22h<br>
+           📞 ${farmacia.telefone}
+         `;
+      </script>
+   </body>
 </html>
