@@ -94,7 +94,7 @@
   <!-- Conteúdo principal -->
   <div class="main-content">
     <div class="container">
-      <h1>Farmácia de Plantão hoje em Neves Paulista 🚨 </h1>
+      <h1 id="titulo-plantao"></h1>
       <div class="farmacia" id="farmacia-nome">Carregando...</div>
       <div class="info" id="farmacia-info"></div>
     </div>
@@ -139,6 +139,8 @@
       return sabado;
     }
 
+
+
     const hoje = new Date();
     const sabadoReferencia = ultimoSabadoAntes(hoje);
     const primeiraData = new Date("2024-04-20"); // Sábado de referência com João
@@ -146,6 +148,12 @@
     const semanasPassadas = Math.floor((sabadoReferencia - primeiraData) / (7 * 24 * 60 * 60 * 1000));
     const indexFarmacia = semanasPassadas % farmacias.length;
     const farmacia = farmacias[indexFarmacia];
+
+       
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const titulo = `Farmácia de Plantão hoje ${dia}/${mes} em Neves Paulista 🚨`;
+    document.getElementById('titulo-plantao').textContent = titulo;
 
     document.getElementById("farmacia-nome").textContent = farmacia.nome;
     document.getElementById("farmacia-info").innerHTML = `
