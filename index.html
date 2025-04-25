@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmácia de Plantão</title>
+  <style>
+    body {
+      background: #fdfdfd;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+    .container {
+      max-width: 500px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+    .farmacia {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #00796b;
+    }
+    .info {
+      margin-top: 1em;
+      font-size: 1em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Farmácia de plantão hoje em Vila Esperança</h1>
+    <div class="farmacia" id="farmacia-nome">Carregando...</div>
+    <div class="info" id="farmacia-info"></div>
+  </div>
+
+  <script>
+    const farmacias = [
+      {
+        nome: "Farmácia Boa Saúde",
+        endereco: "Rua das Flores, 123",
+        telefone: "(99) 99999-0001"
+      },
+      {
+        nome: "Farmácia Central",
+        endereco: "Av. Principal, 456",
+        telefone: "(99) 99999-0002"
+      },
+      {
+        nome: "Farmácia Vida Mais",
+        endereco: "Praça da Matriz, 78",
+        telefone: "(99) 99999-0003"
+      },
+      {
+        nome: "Farmácia São Jorge",
+        endereco: "Rua da Paz, 90",
+        telefone: "(99) 99999-0004"
+      }
+    ];
+
+    // Função para pegar o número da semana do ano
+    function getSemanaDoAno(data) {
+      const umJan = new Date(data.getFullYear(), 0, 1);
+      const diff = data - umJan + (umJan.getTimezoneOffset() - data.getTimezoneOffset()) * 60000;
+      const diaDoAno = Math.floor(diff / 86400000) + 1;
+      return Math.ceil(diaDoAno / 7);
+    }
+
+    const hoje = new Date();
+    const semana = getSemanaDoAno(hoje);
+    const indexFarmacia = (semana - 1) % farmacias.length;
+    const farmacia = farmacias[indexFarmacia];
+
+    document.getElementById("farmacia-nome").textContent = farmacia.nome;
+    document.getElementById("farmacia-info").innerHTML = `
+      📍 ${farmacia.endereco}<br>
+      📞 ${farmacia.telefone}
+    `;
+  </script>
+</body>
+</html>
