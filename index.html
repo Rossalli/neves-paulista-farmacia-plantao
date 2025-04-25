@@ -67,10 +67,26 @@
       color: #444;
     }
 
+     .footer {
+      width: 100%;
+      background: #00796b;
+      color: #fff;
+      padding: 16px 0;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 1000;
+    }
+
     @media (max-width: 768px) {
       .ads-column {
         display: none;
       }
+      .footer { position: static; }
     }
 
     .ad-slot:has(img) {
@@ -108,6 +124,10 @@
     <div class="ad-slot">Anuncie aqui</div>
     <div class="ad-slot">Anuncie aqui</div>
     <div class="ad-slot">Anuncie aqui</div>
+  </div>
+
+   <div class="footer">
+   feito por Bárbara Rocha &nbsp;|&nbsp; Contato: (17) 99735-3415
   </div>
 
   <script>
