@@ -152,7 +152,7 @@
        
     const dia = String(hoje.getDate()).padStart(2, '0');
     const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-    const titulo = `Farmácia de Plantão hoje ${dia}/${mes} em Neves Paulista 🚨`;
+    const titulo = `Farmácia de Plantão hoje (${dia}/${mes}) em Neves Paulista 🚨`;
     document.getElementById('titulo-plantao').textContent = titulo;
 
     document.getElementById("farmacia-nome").textContent = farmacia.nome;
