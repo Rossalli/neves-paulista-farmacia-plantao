@@ -6,81 +6,143 @@
   <title>Farmácia de Plantão</title>
   <style>
     body {
-      background: #fdfdfd;
+      margin: 0;
       font-family: sans-serif;
+      background: #fdfdfd;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .ads-column {
+      width: 120px;
+      background: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 5px;
+      gap: 10px;
+    }
+
+    .ad-slot {
+      width: 100%;
+      height: 80px;
+      background: #fff8dc;
+      border: 1px dashed #888;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      font-size: 0.8em;
       text-align: center;
-      margin: 0;
+      color: #444;
     }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
     .container {
       max-width: 500px;
     }
+
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
       margin-bottom: 0.5em;
     }
+
     .farmacia {
-      font-size: 1.5em;
+      font-size: 1.4em;
       font-weight: bold;
       color: #00796b;
     }
+
     .info {
       margin-top: 1em;
       font-size: 1em;
       color: #444;
     }
+
+    @media (max-width: 768px) {
+      .ads-column {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Farmácia de plantão hoje em Vila Esperança</h1>
-    <div class="farmacia" id="farmacia-nome">Carregando...</div>
-    <div class="info" id="farmacia-info"></div>
+  <!-- Coluna esquerda de anúncios -->
+  <div class="ads-column">
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="main-content">
+    <div class="container">
+      <h1>Farmácia de plantão hoje em Vila Esperança</h1>
+      <div class="farmacia" id="farmacia-nome">Carregando...</div>
+      <div class="info" id="farmacia-info"></div>
+    </div>
+  </div>
+
+  <!-- Coluna direita de anúncios -->
+  <div class="ads-column">
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
+    <div class="ad-slot">Anuncie aqui</div>
   </div>
 
   <script>
     const farmacias = [
       {
-        nome: "Farmácia Boa Saúde",
-        endereco: "Rua das Flores, 123",
-        telefone: "(99) 99999-0001"
+        nome: "Drogaria Santo Antonio (Farmácia do João)",
+        telefone: "(17)98163-1154"
       },
       {
-        nome: "Farmácia Central",
-        endereco: "Av. Principal, 456",
-        telefone: "(99) 99999-0002"
+        nome: "Drogaria São Pedro (Farmácia do Flávio)",
+        telefone: "(17)98108-3876"
       },
       {
-        nome: "Farmácia Vida Mais",
-        endereco: "Praça da Matriz, 78",
-        telefone: "(99) 99999-0003"
+        nome: "Farma Nova (Farmácia do Zé)",
+        telefone: "(17)98133-2376"
       },
       {
-        nome: "Farmácia São Jorge",
-        endereco: "Rua da Paz, 90",
-        telefone: "(99) 99999-0004"
+        nome: "Multidrogas (Farmácia do Tauan)",
+        telefone: "(17)98187-3139"
       }
     ];
 
-    // Função para pegar o número da semana do ano
-    function getSemanaDoAno(data) {
-      const umJan = new Date(data.getFullYear(), 0, 1);
-      const diff = data - umJan + (umJan.getTimezoneOffset() - data.getTimezoneOffset()) * 60000;
-      const diaDoAno = Math.floor(diff / 86400000) + 1;
-      return Math.ceil(diaDoAno / 7);
+    // Função: retorna o sábado mais recente (ou hoje, se for sábado)
+    function ultimoSabadoAntes(hoje) {
+      const dia = hoje.getDay(); // 0 = domingo, 6 = sábado
+      const diasParaTirar = dia === 6 ? 0 : dia + 1; // se sábado, tira 0 dias; se domingo, tira 1, etc.
+      const sabado = new Date(hoje);
+      sabado.setDate(hoje.getDate() - diasParaTirar);
+      return sabado;
     }
 
     const hoje = new Date();
-    const semana = getSemanaDoAno(hoje);
-    const indexFarmacia = (semana - 1) % farmacias.length;
+    const sabadoReferencia = ultimoSabadoAntes(hoje);
+    const primeiraData = new Date("2024-04-20"); // Sábado de referência com João
+
+    const semanasPassadas = Math.floor((sabadoReferencia - primeiraData) / (7 * 24 * 60 * 60 * 1000));
+    const indexFarmacia = semanasPassadas % farmacias.length;
     const farmacia = farmacias[indexFarmacia];
 
     document.getElementById("farmacia-nome").textContent = farmacia.nome;
     document.getElementById("farmacia-info").innerHTML = `
-      📍 ${farmacia.endereco}<br>
+      🕘 Plantão das 9h às 22h<br>
       📞 ${farmacia.telefone}
     `;
   </script>
