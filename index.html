@@ -133,10 +133,6 @@
            {
              nome: "Drogaria Santa Izabel (Cohab I)",
              telefone: "(17) 98141-7800"
-           },
-           {
-             nome: "Multidrogas (Farmácia do Tauan)",
-             telefone: "(17) 98187-3139"
            }
          ];
          
@@ -153,7 +149,7 @@
          
          const hoje = new Date();
          const sabadoReferencia = ultimoSabadoAntes(hoje);
-         const primeiraData = new Date("2024-04-20"); // Sábado de referência com João
+         const primeiraData = new Date("2026-05-02"); // Sábado de referência com João
          
          const semanasPassadas = Math.floor((sabadoReferencia - primeiraData) / (7 * 24 * 60 * 60 * 1000));
          const indexFarmacia = semanasPassadas % farmacias.length;
