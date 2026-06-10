@@ -133,22 +133,11 @@
   </div>
 </header>
 
-<main class="flex-grow pt-[80px] px-sm md:px-lg max-w-[1400px] mx-auto w-full">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter py-md">
+<main class="flex-grow pt-[80px] px-sm md:px-lg max-w-[700px] mx-auto w-full">
+  <div class="py-md">
 
-    <!-- Left Sidebar: Advertisements -->
-    <aside class="hidden lg:block lg:col-span-2 space-y-md">
-      <div class="sticky top-[100px]">
-        <div class="bg-surface-container-low border border-outline-variant rounded-xl p-md text-center min-h-[400px] flex flex-col items-center justify-center gap-sm">
-          <span class="material-symbols-outlined text-outline text-display-lg">campaign</span>
-          <img src="anuncios/ancora_prateada_anuncio.png" alt="Anúncio Âncora Prateada"
-          <div class="w-full h-px bg-outline-variant"></div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Center Column: Main Content -->
-    <section class="lg:col-span-8 flex flex-col gap-md">
+    <!-- Main Content -->
+    <section class="lg:col-span-12 flex flex-col gap-md">
 
       <!-- Status Alert Header -->
       <div class="bg-primary text-on-primary p-md rounded-xl flex items-center justify-between shadow-md">
@@ -167,7 +156,7 @@
         <div class="relative z-10 flex flex-col gap-lg">
           <div class="flex flex-col md:flex-row md:items-start justify-between gap-md">
             <div class="flex flex-col gap-xs">
-              <span class="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-sm py-1 rounded-full w-fit">ABERTA AGORA</span>
+              <span id="status-badge" class="font-label-bold text-label-bold px-sm py-1 rounded-full w-fit"></span>
               <h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mt-xs" id="farmacia-nome-principal">...</h3>
               <p class="font-headline-sm text-headline-sm text-on-surface-variant" id="farmacia-apelido"></p>
             </div>
@@ -219,17 +208,6 @@
 
     </section>
 
-    <!-- Right Sidebar: Advertisements -->
-    <aside class="lg:col-span-2 space-y-md">
-      <div class="sticky top-[100px] space-y-md">
-        <div class="bg-surface-container-low border border-outline-variant rounded-xl p-md text-center min-h-[300px] flex flex-col items-center justify-center gap-sm">
-          <span class="material-symbols-outlined text-outline text-display-lg">ad_units</span>
-          <p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest">Espaço para Anúncio</p>
-          <p class="font-body-md text-body-md text-outline">Anuncie aqui</p>
-        </div>
-      </div>
-    </aside>
-
   </div>
 </main>
 
@@ -243,14 +221,10 @@
 </footer>
 
 <!-- Mobile Bottom Navigation -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant grid grid-cols-2 h-16 z-50">
-  <button class="flex flex-col items-center justify-center gap-1 bg-secondary-container text-on-secondary-container col-span-2">
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant h-16 z-50 flex items-center justify-center">
+  <button class="flex flex-col items-center justify-center gap-1 bg-secondary-container text-on-secondary-container w-full h-full">
     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medication</span>
     <span class="text-[10px] font-label-bold">Início</span>
-  </button>
-  <button class="flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary col-span-2">
-    <span class="material-symbols-outlined">campaign</span>
-    <span class="text-[10px] font-label-bold">Anúncios</span>
   </button>
 </nav>
 
@@ -285,6 +259,20 @@
 
   document.getElementById('titulo-plantao').textContent =
     `Farmácia de Plantão hoje (${dia}/${mes}) em Neves Paulista 🚨`;
+
+  // ── Badge de status inteligente ─────────────────────────────────────────────
+  const hora = hoje.getHours();
+  const badge = document.getElementById('status-badge');
+  if (hora >= 9 && hora < 22) {
+    badge.textContent = 'ABERTA AGORA';
+    badge.className = 'bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-sm py-1 rounded-full w-fit';
+  } else if (hora >= 8 && hora < 9) {
+    badge.textContent = 'ABRE ÀS 9H';
+    badge.className = 'bg-primary-fixed text-on-primary-fixed font-label-bold text-label-bold px-sm py-1 rounded-full w-fit';
+  } else {
+    badge.textContent = 'FECHADA AGORA';
+    badge.className = 'bg-error-container text-on-error-container font-label-bold text-label-bold px-sm py-1 rounded-full w-fit';
+  }
 
   document.getElementById('farmacia-nome-principal').textContent = farmacia.nome;
   document.getElementById('farmacia-apelido').textContent        = farmacia.apelido;
