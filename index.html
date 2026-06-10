@@ -1,175 +1,301 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Farmácia de Plantão</title>
-      <style>
-         body {
-         margin: 0;
-         font-family: sans-serif;
-         background: #fdfdfd;
-         display: flex;
-         min-height: 100vh;
-         /* Remova o justify-content se quiser que as colunas cresçam para o centro */
-         }
-         .ads-column {
-         width: 440px; /* aumente aqui, por exemplo */
-         background: #e0e0e0;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         padding: 10px 5px;
-         gap: 10px;
-         }
-         .ad-slot {
-         width: 100%;
-         height: 150px; /* já aumentado */
-         background: #fff8dc;
-         border: 1px dashed #888;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         font-size: 0.8em;
-         text-align: center;
-         color: #444;
-         }
-         .main-content {
-         flex: 1;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         text-align: center;
-         padding: 20px;
-         }
-         .container {
-         max-width: 500px;
-         }
-         h1 {
-         font-size: 1.8em;
-         margin-bottom: 0.5em;
-         }
-         .farmacia {
-         font-size: 1.4em;
-         font-weight: bold;
-         color: #00796b;
-         }
-         .info {
-         margin-top: 1em;
-         font-size: 1em;
-         color: #444;
-         }
-         .footer {
-         width: 100%;
-         background: #00796b;
-         color: #fff;
-         padding: 16px 0;
-         text-align: center;
-         font-size: 1.1em;
-         font-weight: bold;
-         letter-spacing: 1px;
-         position: fixed;
-         left: 0;
-         bottom: 0;
-         z-index: 1000;
-         }
-         @media (max-width: 768px) {
-         .ads-column {
-         display: none;
-         }
-         .footer { position: static; }
-         }
-         .ad-slot:has(img) {
-         background: none;
-         border: none;
-         padding: 0;
-         }
-      </style>
-   </head>
-   <body>
-      <!-- Coluna esquerda de anúncios -->
-      <div class="ads-column">
-         <div class="ad-slot"><img src="anuncios/ancora_prateada_anuncio.png" alt="Anúncio Âncora Prateada" style="width: 100%; height: 100%; object-fit: contain;"></div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Farmácia de Plantão - Neves Paulista</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "tertiary": "#88001c",
+          "tertiary-fixed": "#ffdad9",
+          "surface-container": "#e6eff8",
+          "inverse-primary": "#acc7ff",
+          "secondary-fixed": "#83fc8e",
+          "secondary-fixed-dim": "#66df75",
+          "error": "#ba1a1a",
+          "secondary-container": "#80f98b",
+          "surface-dim": "#d2dbe4",
+          "primary-fixed-dim": "#acc7ff",
+          "tertiary-fixed-dim": "#ffb3b2",
+          "secondary": "#006e25",
+          "surface-variant": "#dbe4ed",
+          "on-primary": "#ffffff",
+          "on-background": "#141d23",
+          "surface-container-low": "#ecf5fe",
+          "on-tertiary-container": "#ffc0bf",
+          "on-surface-variant": "#424752",
+          "on-secondary-fixed": "#002106",
+          "primary": "#003f87",
+          "inverse-on-surface": "#e9f2fb",
+          "surface": "#f6faff",
+          "error-container": "#ffdad6",
+          "surface-tint": "#115cb9",
+          "on-secondary": "#ffffff",
+          "primary-fixed": "#d7e2ff",
+          "inverse-surface": "#293138",
+          "on-secondary-container": "#007327",
+          "on-primary-container": "#bbd0ff",
+          "surface-container-highest": "#dbe4ed",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed": "#410008",
+          "primary-container": "#0056b3",
+          "on-primary-fixed": "#001a40",
+          "on-error-container": "#93000a",
+          "on-secondary-fixed-variant": "#00531a",
+          "on-tertiary-fixed-variant": "#92001f",
+          "outline-variant": "#c2c6d4",
+          "surface-bright": "#f6faff",
+          "on-surface": "#141d23",
+          "background": "#f6faff",
+          "on-primary-fixed-variant": "#004491",
+          "outline": "#727784",
+          "surface-container-high": "#e0e9f2",
+          "surface-container-lowest": "#ffffff",
+          "tertiary-container": "#b10f2b",
+          "on-error": "#ffffff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "xl": "64px",
+          "base": "4px",
+          "sm": "16px",
+          "xs": "8px",
+          "lg": "40px",
+          "container-max": "1200px",
+          "gutter": "24px",
+          "md": "24px"
+        },
+        "fontFamily": {
+          "display-lg": ["Inter"],
+          "display-lg-mobile": ["Inter"],
+          "headline-md": ["Inter"],
+          "body-lg": ["Inter"],
+          "headline-sm": ["Inter"],
+          "body-md": ["Inter"],
+          "label-bold": ["Inter"],
+          "label-sm": ["Inter"]
+        },
+        "fontSize": {
+          "display-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "display-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+          "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+          "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+          "label-bold": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .status-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+  }
+  .card-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md md:px-lg h-xl bg-surface border-b border-outline-variant shadow-sm">
+  <div class="flex items-center gap-xs">
+    <span class="material-symbols-outlined text-primary">medical_services</span>
+    <h1 class="text-headline-md font-headline-md text-primary">Farmácia de Plantão</h1>
+  </div>
+  <div class="flex items-center">
+    <button class="p-xs hover:bg-surface-container-high rounded-full transition-colors">
+      <span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+    </button>
+  </div>
+</header>
+
+<main class="flex-grow pt-[80px] px-sm md:px-lg max-w-[1400px] mx-auto w-full">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter py-md">
+
+    <!-- Left Sidebar: Advertisements -->
+    <aside class="hidden lg:block lg:col-span-2 space-y-md">
+      <div class="sticky top-[100px]">
+        <div class="bg-surface-container-low border border-outline-variant rounded-xl p-md text-center min-h-[400px] flex flex-col items-center justify-center gap-sm">
+          <span class="material-symbols-outlined text-outline text-display-lg">campaign</span>
+          <img src="anuncios/ancora_prateada_anuncio.png" alt="Anúncio Âncora Prateada"
+          <div class="w-full h-px bg-outline-variant"></div>
+        </div>
       </div>
-      <!-- Conteúdo principal -->
-      <div class="main-content">
-         <div class="container">
-            <h1 id="titulo-plantao"></h1>
-            <div class="farmacia" id="farmacia-nome">Carregando...</div>
-            <div class="info" id="farmacia-info"></div>
-         </div>
+    </aside>
+
+    <!-- Center Column: Main Content -->
+    <section class="lg:col-span-8 flex flex-col gap-md">
+
+      <!-- Status Alert Header -->
+      <div class="bg-primary text-on-primary p-md rounded-xl flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-sm">
+          <div class="w-3 h-3 bg-secondary-fixed rounded-full status-pulse"></div>
+          <h2 class="font-headline-sm text-headline-sm" id="titulo-plantao">Carregando...</h2>
+        </div>
       </div>
-      <!-- Coluna direita de anúncios -->
-      <div class="ads-column">
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
-         <div class="ad-slot">Anuncie aqui</div>
+
+      <!-- Main Pharmacy Card -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg card-shadow overflow-hidden relative">
+        <!-- Subtle background decoration -->
+        <div class="absolute top-0 right-0 p-lg opacity-5 pointer-events-none">
+          <span class="material-symbols-outlined text-[120px]">health_and_safety</span>
+        </div>
+        <div class="relative z-10 flex flex-col gap-lg">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-md">
+            <div class="flex flex-col gap-xs">
+              <span class="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-sm py-1 rounded-full w-fit">ABERTA AGORA</span>
+              <h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mt-xs" id="farmacia-nome-principal">...</h3>
+              <p class="font-headline-sm text-headline-sm text-on-surface-variant" id="farmacia-apelido"></p>
+            </div>
+            <div class="flex items-center gap-sm bg-surface-container rounded-xl p-md border border-outline-variant">
+              <span class="material-symbols-outlined text-primary text-[40px]">schedule</span>
+              <div>
+                <p class="font-label-bold text-label-bold text-on-surface-variant">HORÁRIO DE PLANTÃO</p>
+                <p class="font-headline-sm text-headline-sm text-primary">9h às 22h</p>
+              </div>
+            </div>
+          </div>
+          <div class="pt-md border-t border-outline-variant">
+            <div class="flex items-center gap-md">
+              <div class="bg-primary-container text-on-primary-container p-md rounded-xl">
+                <span class="material-symbols-outlined">call</span>
+              </div>
+              <div>
+                <p class="font-label-bold text-label-bold text-on-surface-variant">TELEFONE</p>
+                <p class="font-headline-sm text-headline-sm text-primary" id="farmacia-telefone">...</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="footer">
-         feito por Bárbara Rocha &nbsp;|&nbsp; Contato: (17) 99735-3415
+
+      <!-- Auxiliary Info Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+        <div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md">
+          <span class="material-symbols-outlined text-tertiary">emergency</span>
+          <div>
+            <p class="font-label-bold text-label-bold text-on-surface-variant">EMERGÊNCIAS</p>
+            <p class="font-body-lg text-body-lg">Ligue 192 (SAMU)</p>
+          </div>
+        </div>
+        <div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md">
+          <span class="material-symbols-outlined text-secondary">local_pharmacy</span>
+          <div>
+            <p class="font-label-bold text-label-bold text-on-surface-variant">LOCALIZAÇÃO</p>
+            <p class="font-body-lg text-body-lg">Neves Paulista - SP</p>
+          </div>
+        </div>
       </div>
-      <script>
-         const farmacias = [
-           {
-             nome: "Drogaria Santo Antonio (Farmácia do João)",
-             telefone: "(17) 98163-1154"
-           },
-           {
-             nome: "Drogaria São Pedro (Farmácia do Flávio)",
-             telefone: "(17) 98108-3876"
-           },
-           {
-             nome: "Farma Nova (Farmácia do Zé)",
-             telefone: "(17) 98133-2376"
-           },
-           {
-             nome: "Drogaria Santa Izabel (Cohab I)",
-             telefone: "(17) 98141-7800"
-           },
-           {
-             nome: "Multidrogas (Farmácia do Tauan)",
-             telefone: "(17) 98187-3139"
-           }
-         ];
-         
-         // Função: retorna o sábado mais recente (ou hoje, se for sábado)
-         function ultimoSabadoAntes(hoje) {
-           const dia = hoje.getDay(); // 0 = domingo, 6 = sábado
-           const diasParaTirar = dia === 6 ? 0 : dia + 1; // se sábado, tira 0 dias; se domingo, tira 1, etc.
-           const sabado = new Date(hoje);
-           sabado.setDate(hoje.getDate() - diasParaTirar);
-           return sabado;
-         }
-         
-         
-         
-         const hoje = new Date();
-         const sabadoReferencia = ultimoSabadoAntes(hoje);
-         const primeiraData = new Date("2026-05-02"); // Sábado de referência com João
-         
-         const semanasPassadas = Math.floor((sabadoReferencia - primeiraData) / (7 * 24 * 60 * 60 * 1000));
-         const indexFarmacia = semanasPassadas % farmacias.length;
-         const farmacia = farmacias[indexFarmacia];
-         
-            
-         const dia = String(hoje.getDate()).padStart(2, '0');
-         const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-         const titulo = `Farmácia de Plantão hoje (${dia}/${mes}) em Neves Paulista 🚨`;
-         document.getElementById('titulo-plantao').textContent = titulo;
-         
-         document.getElementById("farmacia-nome").textContent = farmacia.nome;
-         document.getElementById("farmacia-info").innerHTML = `
-           🕘 Plantão das 9h às 22h<br>
-           📞 ${farmacia.telefone}
-         `;
-      </script>
-   </body>
+
+      <!-- Clinical Visual Element -->
+      <div class="relative w-full h-48 rounded-xl overflow-hidden mt-md">
+        <img alt="Interior de farmácia" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_XHbzZugeKw8O16ubT7-Vv0F99pJa9bJu7vcgDaybKkcxWnIIXCwEyrFyPhcHWrvuS5qLDZdAjQtbUc1u0AKA77pa3-Aq6UWlIEraswYy0ykKFLwxDMgH66xiplxEcv5QY7AUCTHiC4ZkzILOdzS4ncA6oY-16LYee1OevpEftiZicTAYCpz-4XaYROX9b0JqYxVR8_XYMthEb-MrlZLDMSsLUa9N0Oq8XPpxYU3PyVJxf9WzUqq8SYYu0aiu8poC5E1X4SftC3nN">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent"></div>
+      </div>
+
+    </section>
+
+    <!-- Right Sidebar: Advertisements -->
+    <aside class="lg:col-span-2 space-y-md">
+      <div class="sticky top-[100px] space-y-md">
+        <div class="bg-surface-container-low border border-outline-variant rounded-xl p-md text-center min-h-[300px] flex flex-col items-center justify-center gap-sm">
+          <span class="material-symbols-outlined text-outline text-display-lg">ad_units</span>
+          <p class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-widest">Espaço para Anúncio</p>
+          <p class="font-body-md text-body-md text-outline">Anuncie aqui</p>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-md px-lg flex flex-col md:flex-row justify-between items-center gap-base bg-surface-container border-t border-outline-variant mt-xl">
+  <div></div>
+  <div class="flex flex-col items-center md:items-end">
+    <p class="font-body-md text-body-md text-on-surface-variant">feito por <span class="font-bold text-primary">Bárbara Rocha</span></p>
+    <p class="font-body-md text-body-md text-on-surface-variant">Contato: (17) 99735-3415</p>
+  </div>
+</footer>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant grid grid-cols-2 h-16 z-50">
+  <button class="flex flex-col items-center justify-center gap-1 bg-secondary-container text-on-secondary-container col-span-2">
+    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">medication</span>
+    <span class="text-[10px] font-label-bold">Início</span>
+  </button>
+  <button class="flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary col-span-2">
+    <span class="material-symbols-outlined">campaign</span>
+    <span class="text-[10px] font-label-bold">Anúncios</span>
+  </button>
+</nav>
+
+<script>
+  // ── Dados das farmácias ──────────────────────────────────────────────────────
+  const farmacias = [
+    { nome: "Drogaria Santo Antonio", apelido: "Farmácia do João",  telefone: "(17) 98163-1154" },
+    { nome: "Drogaria São Pedro",     apelido: "Farmácia do Flávio", telefone: "(17) 98108-3876" },
+    { nome: "Farma Nova",             apelido: "Farmácia do Zé",    telefone: "(17) 98133-2376" },
+    { nome: "Drogaria Santa Izabel",  apelido: "Cohab I",           telefone: "(17) 98141-7800" },
+    { nome: "Multidrogas",            apelido: "Farmácia do Tauan", telefone: "(17) 98187-3139" },
+  ];
+
+  // ── Lógica de rotação semanal (igual ao original) ───────────────────────────
+  function ultimoSabadoAntes(hoje) {
+    const dia = hoje.getDay();
+    const diasParaTirar = dia === 6 ? 0 : dia + 1;
+    const sabado = new Date(hoje);
+    sabado.setDate(hoje.getDate() - diasParaTirar);
+    return sabado;
+  }
+
+  const hoje            = new Date();
+  const sabadoRef       = ultimoSabadoAntes(hoje);
+  const primeiraData    = new Date("2026-05-02"); // sábado-âncora: começa no João
+  const semanasPassadas = Math.floor((sabadoRef - primeiraData) / (7 * 24 * 60 * 60 * 1000));
+  const farmacia        = farmacias[semanasPassadas % farmacias.length];
+
+  // ── Preenche o DOM ───────────────────────────────────────────────────────────
+  const dia = String(hoje.getDate()).padStart(2, '0');
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+
+  document.getElementById('titulo-plantao').textContent =
+    `Farmácia de Plantão hoje (${dia}/${mes}) em Neves Paulista 🚨`;
+
+  document.getElementById('farmacia-nome-principal').textContent = farmacia.nome;
+  document.getElementById('farmacia-apelido').textContent        = farmacia.apelido;
+  document.getElementById('farmacia-telefone').textContent       = farmacia.telefone;
+
+
+
+  // ── Padding mobile para a bottom nav ────────────────────────────────────────
+  if (window.innerWidth < 768) {
+    document.body.style.paddingBottom = '64px';
+  }
+</script>
+</body>
 </html>
